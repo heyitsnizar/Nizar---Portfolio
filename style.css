@@ -1,0 +1,367 @@
+:root {
+    /* Palet Kosmik & Sihir (Doctor Strange) */
+    --bg-dark: #07040f;
+    --bg-deep: #030107;
+    --surface-glass: rgba(22, 15, 36, 0.45);
+    --surface-border: rgba(255, 126, 0, 0.2);
+    --text-primary: #f8f1e1;
+    --text-secondary: #b3a7d1;
+    --magic-orange: #ff7e00;
+    --magic-glow: rgba(255, 126, 0, 0.7);
+    --cloak-red: #aa0000;
+    --time-stone: #00ff55;
+    
+    /* Font */
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Rajdhani', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+/* Background Animasi Kosmik */
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.7;
+    font-size: 1.1rem;
+    overflow-x: hidden;
+    background-image: 
+        radial-gradient(circle at 15% 20%, rgba(255, 126, 0, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(170, 0, 0, 0.1) 0%, transparent 40%),
+        linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-deep) 100%);
+    background-attachment: fixed;
+    animation: bg-drift 20s infinite alternate ease-in-out;
+}
+
+/* Keyframes Animasi */
+@keyframes bg-drift {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+@keyframes rotate-magic {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); box-shadow: 0 0 20px var(--magic-orange); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes pulse-btn {
+    0% { box-shadow: 0 0 10px rgba(255, 126, 0, 0.4); }
+    50% { box-shadow: 0 0 25px rgba(255, 126, 0, 0.9); }
+    100% { box-shadow: 0 0 10px rgba(255, 126, 0, 0.4); }
+}
+
+@keyframes float-up {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.8), 0 0 15px rgba(255, 126, 0, 0.3); }
+}
+
+h1, h2, h3, h4, .logo {
+    font-family: var(--font-heading);
+}
+
+/* Header & Navbar Glassmorphism */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
+    background: rgba(7, 4, 15, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    border-bottom: 1px solid rgba(255, 126, 0, 0.15);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    width: 100%;
+}
+
+.logo { 
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 800; 
+    font-size: clamp(1rem, 2vw, 1.2rem); 
+    letter-spacing: 1.5px; 
+    text-shadow: 0 0 15px var(--magic-glow);
+}
+
+.magic-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px dashed var(--magic-orange);
+    box-shadow: 0 0 12px var(--magic-orange);
+    animation: rotate-magic 8s linear infinite;
+    flex-shrink: 0;
+}
+
+nav { 
+    display: flex; 
+    align-items: center; 
+    gap: 2rem;
+}
+
+nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Garis bawah sihir saat hover navigasi */
+nav a:not(.btn-hire)::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--magic-orange);
+    box-shadow: 0 0 10px var(--magic-orange);
+    transition: width 0.3s ease;
+}
+
+nav a:not(.btn-hire):hover::after {
+    width: 100%;
+}
+
+nav a:hover { 
+    color: var(--text-primary); 
+    text-shadow: 0 0 10px var(--magic-glow);
+}
+
+/* Tombol HIRE ME */
+.btn-hire {
+    background: linear-gradient(135deg, #ff7e00, #d63a00);
+    color: #fff !important;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: pulse-btn 3s infinite;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-hire:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px var(--magic-orange);
+}
+
+section { 
+    padding: 5rem 5%; 
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Tipografi Responsif (Otomatis menyesuaikan layar) */
+.section-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-bottom: 2.5rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-transform: uppercase;
+}
+
+.section-title::after {
+    content: "";
+    flex-grow: 1;
+    height: 2px;
+    background: linear-gradient(90deg, var(--magic-orange) 0%, transparent 100%);
+    box-shadow: 0 0 15px var(--magic-orange);
+}
+
+/* Glassmorphism Container Tingkat Lanjut */
+.container {
+    background: var(--surface-glass);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border-radius: 20px;
+    border: 1px solid var(--surface-border);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,126,0,0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    width: 100%;
+}
+
+.container h3 {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    line-height: 1.3;
+    margin-bottom: 1rem;
+}
+
+/* Grid Layout Responsif */
+.about-stats, .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.8rem;
+    margin-top: 2rem;
+}
+
+.about-stats {
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 126, 0, 0.2);
+}
+
+.stat-box {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--magic-orange);
+    transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+    background: rgba(255, 126, 0, 0.05);
+    border-left-color: #fff;
+    box-shadow: 0 0 20px rgba(255, 126, 0, 0.2);
+}
+
+.card {
+    background: var(--surface-glass);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--surface-border);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
+}
+
+.card:hover {
+    animation: float-up 0.4s forwards;
+    border-color: rgba(255, 126, 0, 0.6);
+}
+
+.card h3 { 
+    margin-top: 0; 
+    font-size: 1.4rem; 
+    color: var(--magic-orange);
+}
+
+.tag-container { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 0.8rem; 
+}
+
+.tag {
+    background: rgba(170, 0, 0, 0.15); 
+    color: #ffdeb3;
+    border: 1px solid var(--cloak-red);
+    padding: 0.5rem 1rem;
+    border-radius: 30px; /* Bentuk pil/kapsul agar lebih modern */
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.tag:hover {
+    background: var(--cloak-red);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(170, 0, 0, 0.8);
+}
+
+.achievement-card {
+    border-top: 4px solid var(--time-stone);
+    border-left: 1px solid var(--surface-border);
+}
+.achievement-card h3 {
+    color: var(--time-stone);
+}
+
+footer {
+    text-align: center;
+    padding: 3rem 5%;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    border-top: 1px solid rgba(255, 126, 0, 0.2);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: var(--font-heading);
+    background: rgba(3, 1, 7, 0.8);
+}
+
+/* ==========================================
+   TATA LETAK KHUSUS HP (ULTRA RESPONSIVE) 
+   ========================================== */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 1rem 4%;
+    }
+
+    /* Menyembunyikan teks menu, tapi tombol HIRE ME tetap menonjol */
+    nav a:not(.btn-hire) { 
+        display: none !important; 
+    }
+
+    nav {
+        gap: 0;
+    }
+
+    .btn-hire { 
+        padding: 0.5rem 1rem !important;
+        font-size: 0.85rem !important;
+        letter-spacing: 1px;
+    }
+
+    section {
+        padding: 3.5rem 4% !important;
+    }
+
+    /* Penyesuaian Grid & Container untuk HP */
+    .container {
+        padding: 1.5rem !important;
+        border-radius: 16px;
+    }
+
+    .about-stats, .grid {
+        grid-template-columns: 1fr; /* Paksa 1 kolom di HP */
+        gap: 1.2rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+}
+.btn-outline {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--magic-orange);
+    border: 2px solid var(--magic-orange);
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-outline:hover {
+    background-color: var(--magic-orange);
+    color: #000;
+    box-shadow: 0 0 20px var(--magic-orange);
+}
